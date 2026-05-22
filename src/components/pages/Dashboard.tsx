@@ -83,72 +83,72 @@ export default function Dashboard({
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-brand-600 to-brand-800 rounded-3xl p-6 md:p-8 text-white flex flex-col md:flex-row justify-between items-start md:items-center shadow-lg relative overflow-hidden">
-        <div className="space-y-2 z-10">
-          <span className="bg-brand-500/40 text-brand-100 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-            Student Space
+      <div className="bg-gradient-to-br from-brand-900 to-brand-700 rounded-[32px] p-8 text-white flex flex-col md:flex-row justify-between items-start md:items-center shadow-xl shadow-brand-900/10 relative overflow-hidden border border-brand-800">
+        <div className="space-y-3 z-10 max-w-2xl">
+          <span className="bg-brand-800/80 text-brand-200 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-brand-700">
+            LEARNING HUB • LEVEL {profile?.level || "B1"}
           </span>
-          <h1 className="text-3xl font-extrabold tracking-tight font-display">
-            Welcome back, {profile?.name || user?.displayName || "Student"}!
+          <h1 className="text-3xl sm:text-4xl font-light font-serif leading-tight">
+            Welcome back, <span className="italic font-bold text-white">{profile?.name || user?.displayName || "Learner"}</span>
           </h1>
-          <p className="text-brand-100/90 text-sm max-w-xl">
-            Sustaining a daily rhythm is the easiest way to speak English naturally. Your Current Learning Goal is set for <span className="font-semibold text-white underline">{profile?.targetLanguage || "Urdu to English translation rules"}</span>.
+          <p className="text-brand-100/85 text-sm md:text-base leading-relaxed">
+            Sustaining a daily rhythm is the easiest way to speak English naturally. Your Current Learning Goal is set for <span className="font-serif italic text-white font-semibold underline underline-offset-4 decoration-brand-400">{profile?.targetLanguage || "Urdu to English translation rules"}</span>.
           </p>
         </div>
 
-        <div className="mt-4 md:mt-0 flex gap-3 z-10">
+        <div className="mt-6 md:mt-0 flex gap-3 z-10 shrink-0">
           <button
             id="dash-quick-chat"
             onClick={() => onNavigate('chat')}
-            className="cursor-pointer bg-white text-brand-700 hover:bg-slate-50 font-bold px-4 py-2.5 rounded-xl transition-all text-sm shadow-md"
+            className="cursor-pointer bg-white text-brand-900 hover:bg-slate-50 font-bold px-6 py-3 rounded-full transition-all text-xs uppercase tracking-wider shadow-lg shadow-black/10"
           >
             Start Conversation
           </button>
           <button
             id="dash-quick-quiz"
             onClick={() => onNavigate('quiz')}
-            className="cursor-pointer bg-brand-500 text-white hover:bg-brand-600 font-bold px-4 py-2.5 rounded-xl transition-all border border-brand-400 text-sm"
+            className="cursor-pointer bg-brand-600 text-white hover:bg-brand-500 font-bold px-6 py-3 rounded-full transition-all border border-brand-500 text-xs uppercase tracking-wider shadow-lg shadow-brand-600/10"
           >
             Take AI Quiz
           </button>
         </div>
 
         {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-brand-700 rounded-full blur-3xl opacity-30 transform translate-x-12 -translate-y-12"></div>
+        <div className="absolute top-0 right-0 w-80 h-80 bg-brand-800/20 rounded-full blur-[100px] transform translate-x-1/2 -translate-y-1/2"></div>
       </div>
 
       {/* Bento Grid Analytics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Streak card */}
-        <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center space-x-4">
-          <div className="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center shrink-0">
+        <div className="bg-white p-6 rounded-3xl border border-slate-150 shadow-sm flex items-center space-x-4">
+          <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center shrink-0">
             <Flame className="w-6 h-6 text-orange-500 animate-pulse" />
           </div>
           <div>
-            <span className="block text-2xl font-black text-slate-900 font-display">{profile?.streak || 3} Days</span>
-            <span className="text-xs text-slate-500">Consecutive Streak</span>
+            <span className="block text-2xl font-black text-slate-900 font-serif italic">{profile?.streak || 3} Days</span>
+            <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Streak Row</span>
           </div>
         </div>
 
         {/* Experience Points (XP) */}
-        <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center space-x-4">
-          <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
+        <div className="bg-white p-6 rounded-3xl border border-slate-150 shadow-sm flex items-center space-x-4">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center shrink-0">
             <Award className="w-6 h-6 text-emerald-500" />
           </div>
           <div>
-            <span className="block text-2xl font-black text-slate-900 font-display">{profile?.xp || 240} XP</span>
-            <span className="text-xs text-slate-500">Academic Score (Rank)</span>
+            <span className="block text-2xl font-black text-slate-900 font-serif italic">{profile?.xp || 240} XP</span>
+            <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Student Rank</span>
           </div>
         </div>
 
         {/* Proficiency Level Picker Card */}
-        <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center space-x-4 col-span-1">
-          <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
-            <span className="font-black text-blue-600 text-xl font-display">{profile?.level || 'B1'}</span>
+        <div className="bg-white p-6 rounded-3xl border border-slate-150 shadow-sm flex items-center space-x-4 col-span-1">
+          <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0">
+            <span className="font-extrabold text-blue-600 text-xl font-serif italic">{profile?.level || 'B1'}</span>
           </div>
           <div className="flex-grow">
-            <span className="block text-xs text-slate-400 font-semibold uppercase">English Level</span>
+            <span className="block text-[10px] uppercase font-bold tracking-wider text-slate-400">English Level</span>
             <select
               id="dash-level-select"
               value={profile?.level || 'B1'}
@@ -156,7 +156,7 @@ export default function Dashboard({
                 onUpdateLevel(e.target.value as any);
                 toast(`Level updated to ${e.target.value}! Now generating matching materials.`, 'success');
               }}
-              className="mt-0.5 bg-transparent border-none text-sm font-bold text-slate-800 focus:outline-none cursor-pointer p-0 block"
+              className="mt-0.5 bg-transparent border-none text-xs font-bold text-slate-800 focus:outline-none cursor-pointer p-0 block"
             >
               <option value="A1">A1 - Beginner (ابتدائی)</option>
               <option value="A2">A2 - Elementary</option>
@@ -169,13 +169,13 @@ export default function Dashboard({
         </div>
 
         {/* Saved Study metrics */}
-        <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center space-x-4">
-          <div className="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center shrink-0">
+        <div className="bg-white p-6 rounded-3xl border border-slate-150 shadow-sm flex items-center space-x-4">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center shrink-0">
             <BookMarked className="w-6 h-6 text-indigo-500" />
           </div>
           <div>
-            <span className="block text-2xl font-black text-slate-900 font-display">{savedLessons.length} Items</span>
-            <span className="text-xs text-slate-500">Saved Study Deck</span>
+            <span className="block text-2xl font-black text-slate-900 font-serif italic">{savedLessons.length} Items</span>
+            <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Study Deck</span>
           </div>
         </div>
 
@@ -348,77 +348,77 @@ export default function Dashboard({
         <div className="lg:col-span-4 space-y-4">
           
           {/* Active Detail card */}
-          <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl p-6 shadow-md border border-slate-800 min-h-[250px] relative overflow-hidden flex flex-col justify-between">
+          <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-[32px] p-6 shadow-xl border border-slate-800 min-h-[250px] relative overflow-hidden flex flex-col justify-between">
             {selectedLesson ? (
               <div className="space-y-4 z-10">
                 <div className="flex justify-between items-center">
-                  <span className="text-[10px] uppercase font-mono bg-brand-500 text-white font-bold px-2 py-0.5 rounded-md">
+                  <span className="text-[10px] uppercase tracking-wider font-bold bg-brand-800 text-brand-200 px-3 py-1 rounded-full border border-brand-700">
                     Study Inspection
                   </span>
                   <button
                     id="spot-speak-selected"
                     onClick={() => handleSpeakText(selectedLesson.id, selectedLesson.title)}
-                    className="cursor-pointer text-slate-300 hover:text-white"
+                    className="cursor-pointer text-slate-300 hover:text-white transition-colors"
                   >
                     <Volume2 className="w-5 h-5" />
                   </button>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-bold font-sans tracking-tight">{selectedLesson.title}</h3>
+                  <h3 className="text-xl font-bold font-serif tracking-tight text-white leading-snug">{selectedLesson.title}</h3>
                   {selectedLesson.translation && (
-                    <p className="text-sm text-slate-300 italic mt-2 border-l-2 border-brand-500 pl-3">
+                    <p className="text-sm text-slate-300 italic mt-2 border-l-2 border-brand-400 pl-3 font-serif">
                       ہم معنی جملہ: {selectedLesson.translation}
                     </p>
                   )}
                 </div>
 
-                <div className="text-xs text-slate-400 pt-2 font-mono whitespace-pre-line leading-relaxed">
+                <div className="text-xs text-slate-400 pt-2 font-mono whitespace-pre-line leading-relaxed border-t border-slate-800/60">
                   {selectedLesson.content}
                 </div>
               </div>
             ) : (
               <div className="text-center py-10 z-10 flex flex-col justify-center items-center h-full space-y-3">
                 <Sparkles className="w-8 h-8 text-brand-400 animate-pulse" />
-                <h4 className="font-bold text-slate-100 font-display">No Focus Selection</h4>
-                <p className="text-xs text-slate-400 max-w-[200px]">
+                <h4 className="font-bold text-slate-100 font-serif italic">No Focus Selection</h4>
+                <p className="text-xs text-slate-400 max-w-[200px] leading-relaxed">
                   Select any saved lesson card from the deck on the left to see complete Urdu definitions, Roman script, and vocal tools instantly.
                 </p>
               </div>
             )}
             {/* Background spotlight vector styling */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-brand-500 rounded-full blur-[100px] opacity-20 pointer-events-none"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-brand-500 rounded-full blur-[100px] opacity-15 pointer-events-none"></div>
           </div>
 
           {/* Quick Shortcuts */}
-          <div className="bg-white rounded-2xl border border-slate-100 p-5 space-y-3 shadow-sm">
-            <h3 className="font-bold text-slate-800 text-sm font-display mb-2">Practice Shortcuts</h3>
+          <div className="bg-white rounded-3xl border border-slate-150 p-6 space-y-3 shadow-sm">
+            <h3 className="font-bold text-slate-800 text-sm font-serif italic mb-3">Practice Shortcuts</h3>
             
             <button
               id="shortcuts-chat"
               onClick={() => onNavigate('chat')}
-              className="cursor-pointer w-full flex items-center justify-between p-3 rounded-xl hover:bg-brand-50/50 border border-slate-50 transition-all text-left group"
+              className="cursor-pointer w-full flex items-center justify-between p-3.5 rounded-2xl hover:bg-brand-50/50 border border-slate-100 transition-all text-left group"
             >
-              <span className="text-slate-700 text-xs font-semibold group-hover:text-brand-700">Chat with English Tutor Bot</span>
-              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-brand-600 transition-all" />
+              <span className="text-slate-755 text-xs font-semibold group-hover:text-brand-700">Chat with English Tutor Bot</span>
+              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-brand-600 transition-all transform group-hover:translate-x-0.5" />
             </button>
 
             <button
               id="shortcuts-grammar"
               onClick={() => onNavigate('grammar')}
-              className="cursor-pointer w-full flex items-center justify-between p-3 rounded-xl hover:bg-brand-50/50 border border-slate-50 transition-all text-left group"
+              className="cursor-pointer w-full flex items-center justify-between p-3.5 rounded-2xl hover:bg-brand-50/50 border border-slate-100 transition-all text-left group"
             >
-              <span className="text-slate-700 text-xs font-semibold group-hover:text-brand-700">Proofread an Essay or Paragraph</span>
-              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-brand-600 transition-all" />
+              <span className="text-slate-755 text-xs font-semibold group-hover:text-brand-700">Proofread an Essay or Paragraph</span>
+              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-brand-600 transition-all transform group-hover:translate-x-0.5" />
             </button>
 
             <button
               id="shortcuts-spoken"
               onClick={() => onNavigate('spoken')}
-              className="cursor-pointer w-full flex items-center justify-between p-3 rounded-xl hover:bg-brand-50/50 border border-slate-50 transition-all text-left group"
+              className="cursor-pointer w-full flex items-center justify-between p-3.5 rounded-2xl hover:bg-brand-50/50 border border-slate-100 transition-all text-left group"
             >
-              <span className="text-slate-700 text-xs font-semibold group-hover:text-brand-700">Spoken Conversational Drills</span>
-              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-brand-600 transition-all" />
+              <span className="text-slate-755 text-xs font-semibold group-hover:text-brand-700">Spoken Conversational Drills</span>
+              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-brand-600 transition-all transform group-hover:translate-x-0.5" />
             </button>
           </div>
 

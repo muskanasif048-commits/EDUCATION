@@ -44,11 +44,11 @@ export default function Navbar({ currentTab, onNavigate, user, profile, onLogout
             onClick={() => handleNavigate('home')} 
             className="flex items-center space-x-2.5 cursor-pointer"
           >
-            <div className="w-9 h-9 bg-brand-600 rounded-xl flex items-center justify-center shadow-md">
+            <div className="w-9 h-9 bg-brand-600 rounded-xl flex items-center justify-center shadow-sm">
               <GraduationCap className="w-5 h-5 text-white" />
             </div>
-            <span className="text-lg font-black tracking-tight text-slate-900 font-display">
-              EnglishMate <span className="text-brand-600">AI</span>
+            <span className="text-xl font-semibold tracking-tight text-brand-900 font-serif">
+              EnglishMate <span className="italic font-bold text-brand-600">AI</span>
             </span>
           </div>
 

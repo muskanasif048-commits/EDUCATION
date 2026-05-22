@@ -68,13 +68,14 @@ export default function Home({ onNavigate, user, profile, onSaveLesson, toast }:
                 The Future of Language Learning in Pakistan
               </span>
               
-              <h1 className="text-4xl tracking-tight font-extrabold text-slate-900 sm:text-5xl md:text-6xl font-display">
-                Master English with Your Personal <span className="text-brand-600">AI Tutor</span>
+              <h1 className="text-4xl tracking-tight font-light text-slate-900 sm:text-5xl md:text-6xl font-serif leading-tight">
+                Master English with Your <br className="hidden md:inline"/>
+                <span className="italic font-bold text-brand-600">Personal AI Tutor</span>
               </h1>
               
-              <p className="mt-3 text-base text-slate-600 sm:mt-5 sm:text-lg">
+              <p className="mt-4 text-base text-slate-650 sm:text-lg leading-relaxed">
                 EnglishMate AI helps student learn English with advanced AI. 
-                Get direct logical corrections, Urdu translations, vocabulary tools, and tts modules instantly.
+                Get direct logical corrections, Urdu translations, vocabulary tools, and text-to-speech modules instantly.
               </p>
 
               <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
@@ -82,7 +83,7 @@ export default function Home({ onNavigate, user, profile, onSaveLesson, toast }:
                   <button 
                     id="hero-cta-get-started"
                     onClick={() => onNavigate(user ? 'dashboard' : 'login')}
-                    className="cursor-pointer inline-flex items-center justify-center px-6 py-3.5 rounded-lg text-white font-medium bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 shadow-md transition-all duration-150"
+                    className="cursor-pointer inline-flex items-center justify-center px-8 py-3.5 rounded-full text-white font-bold bg-brand-600 hover:bg-brand-700 shadow-md shadow-brand-600/25 transition-all duration-150 text-sm"
                   >
                     <GraduationCap className="w-5 h-5 mr-2" />
                     {user ? 'Go to Dashboard' : 'Start Learning Free'}
@@ -90,7 +91,7 @@ export default function Home({ onNavigate, user, profile, onSaveLesson, toast }:
                   <button 
                     id="hero-learn-more"
                     onClick={() => onNavigate('about')}
-                    className="cursor-pointer inline-flex items-center justify-center px-6 py-3.5 rounded-lg border border-slate-200 text-slate-700 font-medium bg-white hover:bg-slate-50 transition-all"
+                    className="cursor-pointer inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-slate-250 text-slate-700 font-bold bg-white hover:bg-slate-50 transition-all text-sm"
                   >
                     <BookOpen className="w-5 h-5 mr-2 text-slate-400" />
                     Our Methodology
@@ -99,18 +100,18 @@ export default function Home({ onNavigate, user, profile, onSaveLesson, toast }:
               </div>
 
               {/* Trust indicators */}
-              <div className="mt-10 grid grid-cols-3 gap-4 border-t border-slate-200/80 pt-8 text-left max-w-md mx-auto lg:mx-0">
+              <div className="mt-12 grid grid-cols-3 gap-6 border-t border-slate-205 pt-8 text-left max-w-md mx-auto lg:mx-0">
                 <div>
-                  <span className="block text-2xl font-bold text-slate-900 font-display">10+</span>
-                  <span className="text-xs text-slate-500">Structured Modules</span>
+                  <span className="block text-3xl font-bold text-slate-900 font-serif italic">10+</span>
+                  <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Modules</span>
                 </div>
                 <div>
-                  <span className="block text-2xl font-bold text-slate-900 font-display">Gemini</span>
-                  <span className="text-xs text-slate-500">AI Powered Intelligence</span>
+                  <span className="block text-3xl font-bold text-slate-900 font-serif italic">Gemini</span>
+                  <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">AI Power</span>
                 </div>
                 <div>
-                  <span className="block text-2xl font-bold text-slate-900 font-display">Bilingual</span>
-                  <span className="text-xs text-slate-500">Urdu & English Explanation</span>
+                  <span className="block text-3xl font-bold text-slate-900 font-serif italic">Bilingual</span>
+                  <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Explains</span>
                 </div>
               </div>
             </div>
@@ -182,17 +183,19 @@ export default function Home({ onNavigate, user, profile, onSaveLesson, toast }:
       </section>
 
       {/* Daily Sentence Spotlight */}
-      <section className="bg-brand-900 text-white rounded-3xl py-12 px-6 md:px-12 mx-4 sm:mx-8 lg:mx-auto max-w-6xl shadow-xl relative -mt-8 mb-24 z-10 overflow-hidden">
+      <section className="bg-brand-900 text-white rounded-[32px] py-12 px-6 md:px-12 mx-4 sm:mx-8 lg:mx-auto max-w-6xl shadow-xl shadow-brand-900/10 relative -mt-8 mb-24 z-10 overflow-hidden border border-brand-800">
         <div className="relative z-10 grid md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-8">
-            <span className="px-3 py-1 bg-brand-800 text-brand-300 text-xs font-semibold rounded-full uppercase tracking-wider inline-flex items-center gap-1.5 mb-4">
+            <span className="px-3 py-1 bg-brand-800/80 text-brand-200 text-[10px] font-bold rounded-full uppercase tracking-widest inline-flex items-center gap-1.5 mb-4 border border-brand-700">
               <Award className="w-3.5 h-3.5 text-yellow-400" />
               Daily Vocabulary & English Sentence
             </span>
-            <h2 className="text-2xl md:text-3xl font-display font-bold">Today&apos;s English Mastery</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-light leading-tight">
+              Today&apos;s English <span className="italic font-bold text-brand-200">Mastery</span>
+            </h2>
             
-            <div className="mt-6 space-y-3">
-              <p className="text-xl md:text-2xl font-semibold border-l-4 border-brand-500 pl-4 py-1 italic font-sans">
+            <div className="mt-6 space-y-4">
+              <p className="text-xl md:text-2xl font-serif leading-relaxed border-l-4 border-emerald-400 pl-4 py-1 italic">
                 &quot;{dailySentence.content}&quot;
               </p>
               <p className="text-slate-300 text-sm md:text-base italic pl-4">
@@ -200,22 +203,22 @@ export default function Home({ onNavigate, user, profile, onSaveLesson, toast }:
               </p>
             </div>
 
-            <div className="mt-4 text-xs font-mono bg-brand-950/50 p-3 rounded-lg text-brand-200 border border-brand-800">
+            <div className="mt-5 text-xs font-mono bg-brand-950/40 p-4 rounded-2xl text-brand-100 border border-brand-800/60 leading-relaxed">
               💡 {dailySentence.vocab}
             </div>
           </div>
 
           <div className="md:col-span-4 text-center md:text-right">
             {dailySaved ? (
-              <span className="inline-flex items-center gap-1 px-4 py-2.5 rounded-lg bg-green-900 border border-green-700 text-green-300 text-sm font-semibold">
-                <CheckCircle className="w-4 h-4" />
+              <span className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full bg-emerald-950/40 border border-emerald-800/80 text-emerald-300 text-sm font-semibold">
+                <CheckCircle className="w-4 h-4 text-emerald-400" />
                 Saved to Dashboard
               </span>
             ) : (
               <button
                 id="save-daily-btn"
                 onClick={handleSaveDaily}
-                className="cursor-pointer w-full md:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-slate-900 font-bold shadow-lg shadow-emerald-500/10 transition-all text-sm"
+                className="cursor-pointer w-full md:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-emerald-400 hover:bg-emerald-500 text-slate-950 font-bold shadow-lg shadow-emerald-400/20 transition-all text-sm"
               >
                 Save for Dashboard Practice
               </button>
@@ -223,7 +226,7 @@ export default function Home({ onNavigate, user, profile, onSaveLesson, toast }:
           </div>
         </div>
         {/* Background blobs */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-brand-800 rounded-full blur-3xl opacity-30 transform translate-x-12 -translate-y-12"></div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-brand-850 rounded-full blur-3xl opacity-20 transform translate-x-12 -translate-y-12"></div>
       </section>
 
       {/* Structured Modules & Features */}

@@ -54,6 +54,25 @@ export default function App() {
   // Bind Firebase / Sandbox Auth status
   useEffect(() => {
     setLoading(true);
+    if (!auth) {
+      // Offline Demo / Sandbox Mode
+      const localUid = localStorage.getItem('last_user_uid');
+      if (localUid) {
+        const localName = localStorage.getItem('last_user_name') || 'Guest Student';
+        const localEmail = localStorage.getItem('last_user_email') || 'student@sandbox.local';
+        setUser({ uid: localUid, displayName: localName, email: localEmail });
+        syncUserData(localUid, localName, localEmail).then(() => setLoading(false));
+      } else {
+        setUser(null);
+        setProfile(null);
+        setSavedLessons([]);
+        setQuizHistory([]);
+        setSavedChats([]);
+        setLoading(false);
+      }
+      return () => {};
+    }
+
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
@@ -119,7 +138,9 @@ export default function App() {
 
   const handleLogout = async () => {
     try {
-      await signOut(auth);
+      if (auth) {
+        await signOut(auth);
+      }
     } catch (err) {
       console.warn("Direct Firebase SignOut not supported or bypassed.");
     }
