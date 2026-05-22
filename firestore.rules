@@ -1,0 +1,103 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global default-deny catch-all rule
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Primitive Helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Enforce verified emails (if checked by system, or allow basic authenticated users for quick testing)
+    function isVerifiedUser() {
+      return isSignedIn();
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Validation Blueprints
+    function isValidUser(data) {
+      return data.userId == request.auth.uid
+        && data.email is string
+        && data.email.size() <= 200
+        && data.name is string
+        && data.name.size() <= 100
+        && data.streak is int
+        && data.streak >= 0
+        && data.xp is int
+        && data.xp >= 0
+        && data.level is string
+        && data.level.size() <= 5
+        && (data.targetLanguage == null || (data.targetLanguage is string && data.targetLanguage.size() <= 100));
+    }
+
+    function isValidQuizScore(data) {
+      return data.userId == request.auth.uid
+        && data.score is int
+        && data.score >= 0
+        && data.totalQuestions is int
+        && data.totalQuestions > 0
+        && data.percentage is number
+        && data.quizType is string
+        && data.quizType.size() <= 100;
+    }
+
+    function isValidSavedLesson(data) {
+      return data.userId == request.auth.uid
+        && data.type is string
+        && (data.type == 'sentence' || data.type == 'vocabulary' || data.type == 'grammar')
+        && data.title is string
+        && data.title.size() <= 200
+        && data.content is string
+        && data.content.size() <= 2000;
+    }
+
+    function isValidChatMessage(data) {
+      return data.userId == request.auth.uid
+        && data.role is string
+        && (data.role == 'user' || data.role == 'assistant')
+        && data.content is string
+        && data.content.size() <= 5000;
+    }
+
+    // Match statements for each collection
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidUser(request.resource.data) && request.resource.data.joinedAt == request.time;
+      allow update: if isOwner(userId) && isValidUser(request.resource.data) && (
+        // Allow updating streak score, level, targetLanguage, or name
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['streak', 'xp', 'level', 'targetLanguage', 'name'])
+      );
+      allow delete: if false; // Users cannot self-delete their profiles directly from client for audit logs
+
+      match /quizHistory/{scoreId} {
+        allow list, get: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidQuizScore(request.resource.data) && request.resource.data.timestamp is string;
+        allow update, delete: if false; // Quiz entries are immutable
+      }
+
+      match /savedLessons/{lessonId} {
+        allow list, get: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidSavedLesson(request.resource.data) && request.resource.data.savedAt is string;
+        allow delete: if isOwner(userId);
+        allow update: if false; // Saved lessons are only created or deleted
+      }
+
+      match /chats/{messageId} {
+        allow list, get: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidChatMessage(request.resource.data) && request.resource.data.timestamp is string;
+        allow update, delete: if false; // Chat histories are immutable once written
+      }
+    }
+  }
+}

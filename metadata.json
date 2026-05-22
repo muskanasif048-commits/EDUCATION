@@ -1,0 +1,10 @@
+{
+  "name": "EnglishMate AI",
+  "description": "An interactive AI English Teacher to master grammar tenses, vocabulary, and spoken English with bilingual Urdu-English support and personalized quizzes.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

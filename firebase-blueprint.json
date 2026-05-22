@@ -1,0 +1,141 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Information and statistics for an EnglishMate AI student",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Unique identifier of the user (from Firebase Auth)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the user"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the student"
+        },
+        "streak": {
+          "type": "integer",
+          "description": "Current learning streak in consecutive days"
+        },
+        "xp": {
+          "type": "integer",
+          "description": "Experience points earned or academic score"
+        },
+        "level": {
+          "type": "string",
+          "description": "Current English proficiency level (A1, A2, B1, B2, C1, C2)"
+        },
+        "joinedAt": {
+          "type": "string",
+          "description": "ISO timestamp of account initialization"
+        },
+        "targetLanguage": {
+          "type": "string",
+          "description": "Help target language, such as Urdu or general"
+        }
+      },
+      "required": ["userId", "email"]
+    },
+    "QuizScore": {
+      "title": "QuizScore",
+      "description": "Historical record of the user's completed quizzes",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "quizType": {
+          "type": "string"
+        },
+        "score": {
+          "type": "integer"
+        },
+        "totalQuestions": {
+          "type": "integer"
+        },
+        "percentage": {
+          "type": "number"
+        },
+        "timestamp": {
+          "type": "string"
+        }
+      },
+      "required": ["userId", "score", "totalQuestions", "timestamp"]
+    },
+    "SavedLesson": {
+      "title": "SavedLesson",
+      "description": "A grammar sentence or vocabulary item saved by the user for practice",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["sentence", "vocabulary", "grammar"]
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "translation": {
+          "type": "string"
+        },
+        "savedAt": {
+          "type": "string"
+        }
+      },
+      "required": ["userId", "type", "title", "content", "savedAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "A single text interchange with the EnglishMate AI teacher",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        }
+      },
+      "required": ["userId", "role", "content", "timestamp"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "Student profile, daily streak and XP tracking info"
+    },
+    "users/{userId}/quizHistory/{scoreId}": {
+      "schema": "QuizScore",
+      "description": "Quizzes taken by the student"
+    },
+    "users/{userId}/savedLessons/{lessonId}": {
+      "schema": "SavedLesson",
+      "description": "Sentences, explanations, or vocabulary words favorited by the student"
+    },
+    "users/{userId}/chats/{messageId}": {
+      "schema": "ChatMessage",
+      "description": "Academic chat messages in the database"
+    }
+  }
+}
